@@ -2,8 +2,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Free CRM Application Automation Test Regression Suite">
-<listeners>
+	<listeners>
 		<listener class-name="com.qa.ExtentReportListener.ExtentReporterNG" />
+		<listener class-name="Analyzer.RetryAnnotationTransformer" />
+
 	</listeners>
 	<test name="free CRM Application Test Cases">
 		<classes>
