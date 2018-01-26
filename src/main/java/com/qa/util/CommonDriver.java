@@ -65,7 +65,7 @@ public class CommonDriver {
 
 			case 3:
 				System.setProperty("webdriver.chrome.driver",
-						"D:\\study\\ALL PROGRAMS\\SELENIUM\\All_Jars\\chromedriver_win32\\chromedriver.exe");
+						System.getProperty("user.dir")+ "\\src\\main\\resources\\"+"chromedriver.exe");
 				oDriver = new ChromeDriver();
 				break;
 			default:
