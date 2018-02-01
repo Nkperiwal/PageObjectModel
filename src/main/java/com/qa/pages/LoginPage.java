@@ -18,7 +18,7 @@ public class LoginPage extends TestBase {
 	@FindBy(id = "submitButton")
 	WebElement zscalerSignInBtn;
 
-	@FindBy(name = "username")
+	@FindBy(name = "username1")
 	WebElement username;
 
 	@FindBy(name = "password")

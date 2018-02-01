@@ -8,6 +8,9 @@ package com.qa.util;
  */
 
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -59,7 +62,8 @@ public class WebEventListener extends TestBase implements WebDriverEventListener
 
 	public void onException(Throwable error, WebDriver driver) {
 		System.out.println("Exception occured: " + error);
-			String sImagePath =System.getProperty("user.dir") + "//screenshots//" + System.currentTimeMillis() + ".png";
+		String dateName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+			String sImagePath =System.getProperty("user.dir") +"/FailedTestsScreenshots/" + dateName + ".png";
 			oCommonDriver.savePageSnapshot(sImagePath);
 		//	TestUtil.takeScreenshotAtEndOfTest();
 		

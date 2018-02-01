@@ -4,14 +4,17 @@
 <suite name="Free CRM Application Automation Test Sanity Suite">
 
 	<listeners>
-		<listener class-name="com.qa.ExtentReportListener.ExtentReporterNG" />
-		<listener class-name="Analyzer.RetryAnnotationTransformer" />
-
+ 	<listener class-name="com.qa.ExtentReportListener.ExtentReporterNG" /> 
+<!-- 	<listener class-name="com.qa.analyzer.RetryAnnotationTransformer" />  -->
 	</listeners>
 	<test name="free CRM Application Test Cases">
 		<classes>
-			<class name="com.qa.testcases.LoginPageTest" />
-			<class name="com.qa.testcases.HomePageTest" />
+			<class name="com.qa.testcases.LoginPageTest" >
+			<methods>
+				<include name="loginTest" />
+			</methods>
+			</class>
+<!-- 		<class name="com.qa.testcases.HomePageTest" /> -->
 		</classes>
 	</test>
 </suite>

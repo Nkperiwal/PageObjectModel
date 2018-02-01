@@ -7,7 +7,7 @@
         <methods>
           <include name="tearDown"/>
           <include name="setUp"/>
-          <include name="loginPageTitleTest"/>
+          <include name="loginTest"/>
         </methods>
       </class> <!-- com.qa.testcases.LoginPageTest -->
     </classes>

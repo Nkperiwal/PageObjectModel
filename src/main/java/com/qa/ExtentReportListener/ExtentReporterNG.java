@@ -62,6 +62,9 @@ public class ExtentReporterNG implements IReporter {
 
 				if (result.getThrowable() != null) {
 					test.log(status, result.getThrowable());
+					test.log(status, "Test " + status.toString().toLowerCase()
+							+ "ed");
+					test.log(status, test.addScreenCapture(result.getName()));
 				} else {
 					test.log(status, "Test " + status.toString().toLowerCase()
 							+ "ed");
