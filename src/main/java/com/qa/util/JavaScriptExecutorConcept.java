@@ -2,6 +2,7 @@ package com.qa.util;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
@@ -16,16 +17,22 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class JavaScriptExecutorConcept {
 	public static void main(String[] args) {
 		
-		System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")+ "//chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")+ "\\src\\main\\resources\\"+"chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
 		driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
 		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
 		
-		driver.get("https:\\www.freecrm.com");
-		driver.findElement(By.name("username")).sendKeys("Nkperiwal1");
-		driver.findElement(By.name("password")).sendKeys("nkp@1231");
+		//driver.get("https:\\www.freecrm.com");
+		getURLByJS(driver);
+		WebElement usernameField = getElementsByName(driver, "username");
+		WebElement passwordField = getElementsByName(driver, "password");
+
+		sendKeysByJS(driver, usernameField,"Nkperiwal1");
+		sendKeysByJS(driver, passwordField,"nkp@1231");
+		//driver.findElement(By.name("username")).sendKeys("Nkperiwal1");
+		//driver.findElement(By.name("password")).sendKeys("nkp@1231");
 		//driver.findElement(By.xpath("//input[@value='Login']")).click();
 		WebElement loginBtn = driver.findElement(By.xpath("//input[@value='Login']"));
 		flash(loginBtn, driver);
@@ -40,8 +47,48 @@ public class JavaScriptExecutorConcept {
 		scrollIntoView(driver, forgotPwdLink);
 	}
 	
+	public static void getURLByJS(WebDriver driver){
+		String url = "https:\\www.freecrm.com";
+		String script = "window.location = \'"+url+"\'";
+		((JavascriptExecutor) driver).executeScript(script);
+	}
 	
+	public static WebElement getElementsByName(WebDriver driver, String value){
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		WebElement element = (WebElement) js.executeScript("return document.getElementByName('"+value+"');");
+		return element;
+		 
+	}
+	
+	public static WebElement getElementsByID(WebDriver driver, String value){
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		WebElement element = (WebElement) js.executeScript("return document.getElementByID('"+value+"');");
+		return element;
+		 
+	}
+	public static WebElement getElementsByClassName(WebDriver driver, String value){
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		WebElement element = (WebElement) js.executeScript("return document.getElementsByClassName('"+value+"');");
+		return element;
+		 
+	}
+	
+	public static List<WebElement> getElemensByTagName (WebDriver driver, String value){
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		List<WebElement> labels = (List<WebElement>) js.executeScript("return document.getElementsByTagName('"+value+"');");
+		 for(WebElement label: labels)
+		 {
+		  //System.out.println(label.getAttribute("id"));
+		  System.out.println(label.getText());
+		 }
+		 return labels;
+	}
 
+	public static void sendKeysByJS(WebDriver driver, WebElement searchBox, String value){
+		JavascriptExecutor myExecutor = ((JavascriptExecutor) driver);
+		myExecutor.executeScript("arguments[0].value='"+value+"';",searchBox);
+	}
+	
 	public static void flash(WebElement element, WebDriver driver){
 		String bgColor = element.getCssValue("backgroundColor");
 		for (int i =0; i<10; i++){

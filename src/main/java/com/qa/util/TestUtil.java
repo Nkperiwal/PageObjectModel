@@ -1,5 +1,9 @@
 package com.qa.util;
 
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Date;
@@ -113,5 +117,25 @@ public class TestUtil {
 		System.out.println(sDateStamp);
 		return sDateStamp;
 	}
+	
+	public static void uploadFile(String fileLocation) {
+		try {
+			// StringSelection is a class that can be used for copy and paste operations.
+			StringSelection stringSelection = new StringSelection(fileLocation);
+			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
+			Thread.sleep(3000);
+			// native key strokes for CTRL, V and ENTER keys
+			Robot robot = new Robot();
 
+			robot.keyPress(KeyEvent.VK_CONTROL);
+			robot.keyPress(KeyEvent.VK_V);
+			robot.keyRelease(KeyEvent.VK_V);
+			robot.keyRelease(KeyEvent.VK_CONTROL);
+			robot.keyPress(KeyEvent.VK_ENTER);
+			robot.keyRelease(KeyEvent.VK_ENTER);
+		} catch (Exception exp) {
+			exp.printStackTrace();
+		}
+	}
+	
 }

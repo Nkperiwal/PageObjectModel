@@ -4,6 +4,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -16,10 +17,13 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -34,6 +38,7 @@ public class CommonDriver {
 	String frame;
 	Actions myActions;
 	Action seriesOfActions;
+	String downloadFilepath = "C:\\Users\\nkp\\Downloads";
 
 	public CommonDriver() {
 		lngPageLoadTimeOut = 60L;
@@ -50,23 +55,39 @@ public class CommonDriver {
 
 	public void openBrowser(String sBrowserType, String sUrl) {
 		try {
+			DesiredCapabilities capabilities;
 
 			switch (getBrowserTypeIndexed(sBrowserType)) {
 			case 1:
-				System.setProperty("webdriver.gecko.driver",
-						"D:\\Akanksha\\Selenium\\geckodriver-v0.10.0-win64\\geckodriver.exe");
+				System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + "//geckodriver.exe");
 				oDriver = new FirefoxDriver();
 				break;
 			case 2:
 
-				System.setProperty("webdriver.ie.driver", "D:\\Nandkishor\\JAVA-Selenium\\Jars\\IEDriverServer.exe");
-				oDriver = new InternetExplorerDriver();
+				System.setProperty("webdriver.ie.driver",
+						System.getProperty("user.dir") + "\\src\\main\\resources\\" + "IEDriverServer.exe");
+				capabilities = DesiredCapabilities.internetExplorer();
+				capabilities.setCapability("ignoreZoomSetting", true);
+				capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
+						true);
+				InternetExplorerOptions ieOptions = new InternetExplorerOptions();
+				ieOptions.merge(capabilities);
+				oDriver = new InternetExplorerDriver(ieOptions);
 				break;
 
 			case 3:
+
 				System.setProperty("webdriver.chrome.driver",
-						System.getProperty("user.dir")+ "\\src\\main\\resources\\"+"chromedriver.exe");
+						System.getProperty("user.dir") + "\\src\\main\\resources\\" + "chromedriver.exe");
 				oDriver = new ChromeDriver();
+				HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
+				chromePrefs.put("profile.default_content_settings.popups", 0);
+				chromePrefs.put("download.default_directory", downloadFilepath);
+				ChromeOptions options = new ChromeOptions();
+				options.setExperimentalOption("prefs", chromePrefs);
+				options.addArguments("--test-type");
+				options.addArguments("--disable-extensions"); // to disable browser extension popup
+				oDriver = new ChromeDriver(options);
 				break;
 			default:
 				throw new Exception("Unknow Browser Type = " + sBrowserType);
@@ -150,7 +171,6 @@ public class CommonDriver {
 	}
 
 	// ---------------------------------------------------------------------
-	
 
 	public void waitTillElementIsVisible(WebElement element, long timeoutSeconds) {
 		try {
@@ -179,7 +199,7 @@ public class CommonDriver {
 	}
 
 	// -------------------------------------------------------------------
-	
+
 	public void waitForSeconds(long seconds) {
 		try {
 
@@ -189,7 +209,7 @@ public class CommonDriver {
 			t.printStackTrace();
 		}
 	}
-	
+
 	// ---------------------------------------------------------------------
 
 	public String savePageSnapshot(String sImagePath) {
@@ -258,10 +278,10 @@ public class CommonDriver {
 	// ---------------------------------------
 
 	public void verifyTitle(String actual, String expected) {
-			
-		Assert.assertEquals(actual, expected,"Verification Failed");
-			
-		}
+
+		Assert.assertEquals(actual, expected, "Verification Failed");
+
+	}
 
 	// ---------------------------------------
 
@@ -309,7 +329,6 @@ public class CommonDriver {
 			t.printStackTrace();
 		}
 	}
-	
 
 	// -----------------------------------------
 
