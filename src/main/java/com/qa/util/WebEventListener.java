@@ -64,7 +64,7 @@ public class WebEventListener extends TestBase implements WebDriverEventListener
 		System.out.println("Exception occured: " + error);
 		String dateName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
 			String sImagePath =System.getProperty("user.dir") +"/FailedTestsScreenshots/" + dateName + ".png";
-			oCommonDriver.savePageSnapshot(sImagePath);
+			oBaseUtil.savePageSnapshot(sImagePath);
 		//	TestUtil.takeScreenshotAtEndOfTest();
 		
 	}

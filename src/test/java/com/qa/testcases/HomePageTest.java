@@ -23,8 +23,8 @@ public class HomePageTest extends TestBase {
 	public void setUp(){
 		initialize();
 		oLoginPage = new LoginPage();
-		oHomePage = oLoginPage.login(oDriverProperties.getProperty("username"), oDriverProperties.getProperty("password"));
-		oCommonDriver.switchToFrame("mainpanel");
+		oHomePage = oLoginPage.login(freeCRMUserName,freeCRMPassword);
+		oBaseUtil.switchToFrame("mainpanel");
 
 	}
 	
@@ -32,7 +32,7 @@ public class HomePageTest extends TestBase {
 	public void homePageTitleTest(){
 		String sActualLoginPageTitle = oHomePage.validateHomePageTitle();
 		String expectedLoginPageTitle = "CRMPRO";
-		oCommonDriver.verifyTitle(sActualLoginPageTitle, expectedLoginPageTitle);
+		oBaseUtil.verifyTitle(sActualLoginPageTitle, expectedLoginPageTitle);
 	}	
 	
 	@Test(priority=2)
@@ -55,9 +55,14 @@ public class HomePageTest extends TestBase {
 		oHomePage.clickOnTasksLink();
 	}
 	
+	@Test(priority=6)
+	public void selectSpecificDateTest(){
+		oHomePage.selectSpecificDate("12/07/2014");
+	}
+	
 	@AfterMethod
 	public void tearDown(){
-		oCommonDriver.closeBrowser();
+		oBaseUtil.closeBrowser();
 	}
 	
 	

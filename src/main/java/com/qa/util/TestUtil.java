@@ -4,44 +4,18 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.Date;
-import java.util.Properties;
 
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
 
-public class TestUtil {
+public class TestUtil{
 	//public static String TESTDATA_SHEET_PATH = ".\\src\\main\\java\\com\\qa\\testdata\\FreeCrmTestData.xlsx";
 
 	static Workbook book;
 	static Sheet sheet;
 	
-	
-	public static Properties getProperties(String sPropertiesFile){
-		
-		try {
-			InputStream oFileReader;
-			Properties oProperty;
-			
-			oFileReader = new FileInputStream(sPropertiesFile);
-			oProperty = new Properties();
-			
-			oProperty.load(oFileReader);
-			
-			return oProperty;
-			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			
-			return null;
-		}
-		
-		
-	}
 	
 	//---------------------------------------------------------------
 	

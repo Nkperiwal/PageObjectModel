@@ -29,7 +29,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-public class CommonDriver {
+public class BaseUtil {
 
 	public static WebDriver oDriver;
 	private long lngPageLoadTimeOut;
@@ -40,7 +40,7 @@ public class CommonDriver {
 	Action seriesOfActions;
 	String downloadFilepath = "C:\\Users\\nkp\\Downloads";
 
-	public CommonDriver() {
+	public BaseUtil() {
 		lngPageLoadTimeOut = 60L;
 		lngElementDetectionTimeOut = 30L;
 	}
@@ -59,7 +59,7 @@ public class CommonDriver {
 
 			switch (getBrowserTypeIndexed(sBrowserType)) {
 			case 1:
-				System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + "//geckodriver.exe");
+				System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") +"\\src\\main\\resources\\"+ "geckodriver.exe");
 				oDriver = new FirefoxDriver();
 				break;
 			case 2:
@@ -79,7 +79,6 @@ public class CommonDriver {
 
 				System.setProperty("webdriver.chrome.driver",
 						System.getProperty("user.dir") + "\\src\\main\\resources\\" + "chromedriver.exe");
-				oDriver = new ChromeDriver();
 				HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
 				chromePrefs.put("profile.default_content_settings.popups", 0);
 				chromePrefs.put("download.default_directory", downloadFilepath);
@@ -452,6 +451,21 @@ public class CommonDriver {
 			t.printStackTrace();
 		}
 	}
+	
+	// -----------------------------------------
+
+		public void selectItemByIndexInListBox(WebElement element, int iIndexValue) {
+			try {
+				Select oListBox;
+
+				oListBox = new Select(element);
+
+				oListBox.selectByIndex(iIndexValue);
+
+			} catch (Throwable t) {
+				t.printStackTrace();
+			}
+		}
 
 	// -----------------------------------------
 

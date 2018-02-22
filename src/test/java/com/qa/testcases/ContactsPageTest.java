@@ -10,7 +10,7 @@ import com.qa.base.TestBase;
 import com.qa.pages.ContactsPage;
 import com.qa.pages.HomePage;
 import com.qa.pages.LoginPage;
-import com.qa.util.TestUtil;
+import com.qa.util.DataProviderUtil;
 
 public class ContactsPageTest extends TestBase {
 	
@@ -29,8 +29,8 @@ public class ContactsPageTest extends TestBase {
 	public void setUp(){
 		initialize();
 		oLoginPage = new LoginPage();
-		oHomePage = oLoginPage.login(oDriverProperties.getProperty("username"), oDriverProperties.getProperty("password"));
-		oCommonDriver.switchToFrame("mainpanel");
+		oHomePage = oLoginPage.login(freeCRMUserName, freeCRMPassword);
+		oBaseUtil.switchToFrame("mainpanel");
 		oContactsPage = oHomePage.clickOnContactsLink();
 	}
 	
@@ -58,10 +58,10 @@ public class ContactsPageTest extends TestBase {
 
 	}
 	
-	@DataProvider
+	@DataProvider(name="getCRMTestData")
 	public Object[][] getCRMTestData(){
 		
-		Object data[][] = TestUtil.getTestData(oDriverProperties.getProperty("TestDataFile"),sSheetName);
+		Object data[][] = DataProviderUtil.getSheetData(testDataFile, sSheetName);
 		return data;
 	}
 	
@@ -76,7 +76,7 @@ public class ContactsPageTest extends TestBase {
 	
 	@AfterMethod
 	public void tearDown(){
-		oCommonDriver.closeBrowser();
+		oBaseUtil.closeBrowser();
 	}
 	
 	

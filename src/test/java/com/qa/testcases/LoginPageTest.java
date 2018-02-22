@@ -30,7 +30,7 @@ public class LoginPageTest extends TestBase {
 	public void loginPageTitleTest(){
 		String sActualLoginPageTitle = oLoginPage.validateLoginPageTitle();
 		String expectedLoginPageTitle = "#1 Free CRM for Any Business: Online Customer Relationship Software";
-		oCommonDriver.verifyTitle(sActualLoginPageTitle, expectedLoginPageTitle);
+		oBaseUtil.verifyTitle(sActualLoginPageTitle, expectedLoginPageTitle);
 	}
 	
 	@Test(priority=2)
@@ -41,14 +41,14 @@ public class LoginPageTest extends TestBase {
 	
 	@Test(priority=3)
 	public void loginTest(){
-		oHomePage = oLoginPage.login(oDriverProperties.getProperty("username"), oDriverProperties.getProperty("password"));
+		oHomePage = oLoginPage.login(freeCRMUserName, freeCRMPassword);
 	}
 	
 	
 	
 	@AfterMethod
 	public void tearDown(){
-		oCommonDriver.closeBrowser();
+		oBaseUtil.closeBrowser();
 	}
 	
 	

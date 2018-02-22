@@ -34,7 +34,7 @@ public class LoginPage extends TestBase {
 	WebElement crmLogo;
 
 	public LoginPage() {
-		PageFactory.initElements(oCommonDriver.getDriver(), this);
+		PageFactory.initElements(oBaseUtil.getDriver(), this);
 
 	}
 
@@ -45,7 +45,7 @@ public class LoginPage extends TestBase {
 		zscalerSignInBtn.click();
 	}
 	public String validateLoginPageTitle() {
-		return oCommonDriver.getTitle();
+		return oBaseUtil.getTitle();
 	}
 
 	public boolean validateCRMImage() {

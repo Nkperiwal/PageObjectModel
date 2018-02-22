@@ -31,7 +31,7 @@ public class ContactsPage extends TestBase {
 	
 	// Initializing the Page Objects:
 	public ContactsPage() {
-		PageFactory.initElements(oCommonDriver.getDriver(), this);
+		PageFactory.initElements(oBaseUtil.getDriver(), this);
 	}
 	
 	
@@ -41,17 +41,17 @@ public class ContactsPage extends TestBase {
 	
 	
 	public void selectContactsByName(String name){
-		oCommonDriver.getDriver().findElement(By.xpath("//a[text()='"+name+"']//parent::td[@class='datalistrow']"
+		oBaseUtil.getDriver().findElement(By.xpath("//a[text()='"+name+"']//parent::td[@class='datalistrow']"
 				+ "//preceding-sibling::td[@class='datalistrow']//input[@name='contact_id']")).click();
 	}
 	
 	public void selectAllContactsByName(){
-		oCommonDriver.getDriver().findElement(By.xpath("//strong[text()='Name']//parent::td[@class='datatitle']"
+		oBaseUtil.getDriver().findElement(By.xpath("//strong[text()='Name']//parent::td[@class='datatitle']"
 				+ "//preceding-sibling::td[@class='datatitle']//input[@name='contact_id']")).click();
 	}
 	
 	public void createNewContact(String title, String ftName, String ltName, String comp){
-		oCommonDriver.selectItemInListBox(titleDropdownList, title);
+		oBaseUtil.selectItemInListBox(titleDropdownList, title);
 		firstName.sendKeys(ftName);
 		lastName.sendKeys(ltName);
 		company.sendKeys(comp);
