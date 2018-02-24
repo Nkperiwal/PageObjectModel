@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.qa.base.TestBase;
+import com.qa.contants.Enums_provider;
 
 public class HomePage extends TestBase {
 	// Page Factory - OR:
@@ -72,6 +73,10 @@ public class HomePage extends TestBase {
 		
 		
 	}
+	/**
+	 * 
+	 * @param sdateValue
+	 */
 	
 	public void selectSpecificDate(String sdateValue) {
 		
@@ -97,10 +102,14 @@ public class HomePage extends TestBase {
 			if(flag==1)
 				break;
 		}
+		
+		
 		oBaseUtil.verifyTitle(oBaseUtil.getTitle(), "CRMPRO");
 		System.out.println(dateSelected.getText());
 		
-		
+		if(dateSelected.getText().equals(Enums_provider.Jan)){
+			
+		}
 		
 	}
 

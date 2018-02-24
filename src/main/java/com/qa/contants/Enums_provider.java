@@ -1,9 +1,6 @@
 package com.qa.contants;
 
-public class Enums_provider {
-	enum Months{
+public enum Enums_provider {
 		Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec
 		
-	}
-
 }
