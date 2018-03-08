@@ -5,7 +5,7 @@
     <classes>
       <class name="com.qa.testcases.HomePageTest">
         <methods>
-          <include name="selectSpecificDateTest"/>
+          <include name="homePageTitleTest"/>
           <include name="tearDown"/>
           <include name="setUp"/>
         </methods>

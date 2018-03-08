@@ -3,6 +3,7 @@ package com.qa.testcases;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import com.qa.base.TestBase;
 import com.qa.pages.HomePage;
@@ -28,11 +29,14 @@ public class HomePageTest extends TestBase {
 
 	}
 	
-	@Test(priority=1, enabled=false)
+	@Test(priority=1)
 	public void homePageTitleTest(){
 		String sActualLoginPageTitle = oHomePage.validateHomePageTitle();
 		String expectedLoginPageTitle = "CRMPRO";
+		//SoftAssert softAssertion = new SoftAssert();
+		//softAssertion.assertEquals(true, false);
 		oBaseUtil.verifyTitle(sActualLoginPageTitle, expectedLoginPageTitle);
+		//softAssertion.assertAll();
 	}	
 	
 	@Test(priority=2)

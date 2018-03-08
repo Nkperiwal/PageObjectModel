@@ -226,7 +226,7 @@ public class BaseUtil {
 
 			oCamera = (TakesScreenshot) oDriver;
 			oTmpFile = (File) oCamera.getScreenshotAs(OutputType.FILE);
-			oCamera.getScreenshotAs(OutputType.FILE);
+			//oCamera.getScreenshotAs(OutputType.FILE);
 
 			FileUtils.copyFile(oTmpFile, oImageFile);
 
@@ -277,7 +277,7 @@ public class BaseUtil {
 	// ---------------------------------------
 
 	public void verifyTitle(String actual, String expected) {
-
+		
 		Assert.assertEquals(actual, expected, "Verification Failed");
 
 	}
@@ -473,4 +473,53 @@ public class BaseUtil {
 		oDriver.close();
 	}
 
+public boolean VerifyWebPageIsloaded() {
+
+	int maxTime = 240;
+	JavascriptExecutor js = null;
+	boolean result = false;
+	String state;
+	String returnMsg = null;
+	String commentMsg;
+	try {
+
+
+		if (oDriver instanceof JavascriptExecutor) {
+			js = (JavascriptExecutor) oDriver;
+		}
+
+		for (int i = 0; i < maxTime; i++) {
+			// do {
+
+			// js.executeScript("document.readyState");
+			state = js.executeScript("return document.readyState").toString();
+
+			// state=js.executeScript("return(document.readyState ==
+			// 'complete' && jQuery.active == 0)").toString();
+			/*
+			 * state1 = js.executeScript("return window.onload")
+			 * .toString();
+			 */
+
+			if (!(state.equals("complete") || state.equals("loaded"))) {
+				result = true;
+				commentMsg = "Page is NOT loaded completely yet";
+				returnMsg = "WARNING";
+				continue;
+
+			} else {
+				commentMsg = "Page is loaded completely";
+				returnMsg = "PASS";
+				break;
+			}
+
+		} // while (result);
+
+	} catch (Exception e) {
+		e.printStackTrace();
+		result = false;
+
+}
+	return result;
+}
 }

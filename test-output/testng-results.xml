@@ -2,20 +2,20 @@
 <testng-results skipped="0" failed="0" ignored="5" total="6" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="26721" started-at="2018-02-22T17:37:46Z" finished-at="2018-02-22T17:38:12Z">
+  <suite name="Default suite" duration-ms="27201" started-at="2018-03-08T14:00:01Z" finished-at="2018-03-08T14:00:28Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="26721" started-at="2018-02-22T17:37:46Z" finished-at="2018-02-22T17:38:12Z">
+    <test name="Default test" duration-ms="27201" started-at="2018-03-08T14:00:01Z" finished-at="2018-03-08T14:00:28Z">
       <class name="com.qa.testcases.HomePageTest">
-        <test-method status="PASS" signature="setUp()[pri:0, instance:com.qa.testcases.HomePageTest@4cf777e8]" name="setUp" is-config="true" duration-ms="21245" started-at="2018-02-22T23:07:46Z" finished-at="2018-02-22T23:08:07Z">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:com.qa.testcases.HomePageTest@4cf777e8]" name="setUp" is-config="true" duration-ms="26030" started-at="2018-03-08T19:30:01Z" finished-at="2018-03-08T19:30:27Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="selectSpecificDateTest()[pri:6, instance:com.qa.testcases.HomePageTest@4cf777e8]" name="selectSpecificDateTest" duration-ms="4729" started-at="2018-02-22T23:08:07Z" finished-at="2018-02-22T23:08:12Z">
+        <test-method status="PASS" signature="homePageTitleTest()[pri:1, instance:com.qa.testcases.HomePageTest@4cf777e8]" name="homePageTitleTest" duration-ms="18" started-at="2018-03-08T19:30:27Z" finished-at="2018-03-08T19:30:27Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- selectSpecificDateTest -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.qa.testcases.HomePageTest@4cf777e8]" name="tearDown" is-config="true" duration-ms="715" started-at="2018-02-22T23:08:12Z" finished-at="2018-02-22T23:08:12Z">
+        </test-method> <!-- homePageTitleTest -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.qa.testcases.HomePageTest@4cf777e8]" name="tearDown" is-config="true" duration-ms="1104" started-at="2018-03-08T19:30:27Z" finished-at="2018-03-08T19:30:28Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
